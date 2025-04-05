@@ -52,15 +52,12 @@ def can_split_coffee(coffee, n):
         return can_split_coffee(coffee, n)
     else:
         return False
-    else:
-        return False
 
 
 print(can_split_coffee([4, 4, 8], 2))
 print(can_split_coffee([5, 10, 15], 4))
 
 
-# p4
 class Node:
     def __init__(self, value, next=None):
         self.value = value
@@ -72,6 +69,8 @@ def print_linked_list(head):
     while current:
         print(current.value, end=" -> " if current.next else "\n")
         current = current.next
+
+# p4
 
 def merge_orders(sandwich_a, sandwich_b):
     merge_helper(sandwich_a, sandwich_b)
@@ -127,3 +126,38 @@ sandwich_b = Node('Turkey', Node('Cheese', Node('Mayo')))
 sandwich_c = Node('Bread')
 print_linked_list(merge_orders(sandwich_a1, sandwich_b))
 print_linked_list(merge_orders(sandwich_a2, sandwich_c))
+
+
+# p5
+def merge_orders(sandwich_a, sandwich_b):
+    # If either list is empty, return the other
+    if not sandwich_a:
+        return sandwich_b
+    if not sandwich_b:
+        return sandwich_a
+
+    # Start with the first node of sandwich_a
+    head = sandwich_a
+    
+    # Loop through both lists until one is exhausted
+    while sandwich_a and sandwich_b:
+        # Store the next pointers
+        next_a = sandwich_a.next
+        next_b = sandwich_b.next
+        
+        # Merge sandwich_b after sandwich_a
+        sandwich_a.next = sandwich_b
+        
+        # If there's more in sandwich_a, add it after sandwich_b
+        if sandwich_a:
+            sandwich_b.next = next_a
+        
+        # Move to the next nodes
+        sandwich_a = next_a
+        sandwich_b = next_b
+
+    # Return the head of the new merged list
+    return head
+'''
+
+'''
